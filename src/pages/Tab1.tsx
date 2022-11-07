@@ -1,8 +1,34 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
+import { useEffect } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
+import {
+  createEntropy,
+  get11Words,
+  getSHA256OfEntropy,
+} from '../components/bip39';
+
+declare global {
+  interface Window {
+    entropyToMnemonic: any;
+  }
+}
 
 const Tab1: React.FC = () => {
+  useEffect(() => {
+    for (var i = 0; i < 16; i++) {
+      const random = createEntropy();
+      const entropy = getSHA256OfEntropy(random);
+      const words = get11Words(entropy);
+    }
+    // console.log('words: ', words);
+  }, []);
   return (
     <IonPage>
       <IonHeader>
