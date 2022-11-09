@@ -9,6 +9,7 @@ import {
 } from '@ionic/react';
 import { checkmarkCircle, add, cog, copy } from 'ionicons/icons';
 import { Store } from '../utils/store';
+import * as web3 from '@solana/web3.js';
 
 interface StoreInterface {
   state: any;
@@ -31,6 +32,7 @@ export default function Accounts() {
     //create an account from state.wallet.seed
     //if state.wallet.seed is empty create a new one
     if (state?.wallet?.seed === '') {
+      console.log('Empty seed');
       //create a high entropy seed
       //create a new keypair from that seed
       //get the phrase and save it too
