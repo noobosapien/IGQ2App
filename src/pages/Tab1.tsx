@@ -13,6 +13,7 @@ import {
   getSHA256OfEntropy,
 } from '../components/bip39';
 import Wallet from '../components/Wallet';
+import wordList from '../utils/words.json';
 
 declare global {
   interface Window {
@@ -25,9 +26,12 @@ const Tab1: React.FC = () => {
     for (var i = 0; i < 16; i++) {
       const random = createEntropy();
       const entropy = getSHA256OfEntropy(random);
+      console.log('Random: ', entropy);
       const words = get11Words(entropy);
+      for (var j = 0; j < words.length; j++) {
+        console.log(`Word ${j + 1}: `, wordList[words[j]]);
+      }
     }
-    // console.log('words: ', words);
   }, []);
   return (
     <IonPage>
